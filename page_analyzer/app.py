@@ -1,8 +1,17 @@
-from flask import Flask
+from flask import (
+    Flask,
+    render_template,
+)
 
-app = Flask(__name__)
+# redirect,
+# url_for,
+# flash,
+# request,
+# make_response,
+
+app = Flask(__name__, template_folder="../templates")
 
 
 @app.get("/")
 def hello():
-    return "Hello World!", 200
+    return render_template("index.html")
