@@ -1,0 +1,28 @@
+name: Deploy to Railway dev environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Name of the branch to deploy to development environment'
+#         What if just reference the branch?
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Railway CLI
+        run: curl -sSL https://get.railway.app | sh
+      - name: Login to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway login
+      - name: Deploy to Dev Environment
+        env:
+          RAILWAY_PROJECT_ID: your_project_id
+          BRANCH_NAME: ${{ github.event.inputs.branch_name }}
+        run: railway run -e dev --command "railway run deploy --ref $BRANCH_NAME" --project $RAILWAY_PROJECT_ID
