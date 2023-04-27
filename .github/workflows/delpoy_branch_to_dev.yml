@@ -19,7 +19,7 @@ jobs:
         run: bash <(curl -fsSL cli.new)
       - name: deploy
         env:
-          RAILWAY_PROJECT_ID: 83f255f0-ccc7-4e99-b90a-7242730dd4c3
+          RAILWAY_PROJECT_ID: ${{ vars.RAILWAY_PROJECT_ID }}
           BRANCH_NAME: ${{ github.event.inputs.branch_name }}
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: railway run -e dev "deploy --ref $BRANCH_NAME" --project $RAILWAY_PROJECT_ID
+        run: railway run -e development "deploy --ref $BRANCH_NAME" --project $RAILWAY_PROJECT_ID
