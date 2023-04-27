@@ -1,0 +1,27 @@
+name: Manual Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - name: Install Dependencies
+        run: npm install
+      - name: Build App
+        run: npm run build
+      - name: Deploy to Railway
+        run: |
+          curl -X POST https://railway.app/new-deploy \
+          -H "Authorization: Bearer ${{ secrets.RAILWAY_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          --data '{"ref":"'$BRANCH_NAME'"}'
+        env:
+          BRANCH_NAME: ${{ github.event.inputs.branch_name }}
