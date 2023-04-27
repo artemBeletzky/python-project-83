@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install Railway CLI
-        run: curl -sSL https://get.railway.app | sh
+        run: bash <(curl -fsSL cli.new)
       - name: Login to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
