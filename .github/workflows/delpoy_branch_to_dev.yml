@@ -22,5 +22,5 @@ jobs:
           RAILWAY_PROJECT_ID: ${{ vars.RAILWAY_PROJECT_ID }}
           BRANCH_NAME: ${{ github.ref_name }}
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-#        run: railway run -e development "deploy --ref $BRANCH_NAME" --project $RAILWAY_PROJECT_ID
-        run: echo "Branch name is $BRANCH_NAME"
+        run: railway run -e development "deploy --ref $BRANCH_NAME" --project $RAILWAY_PROJECT_ID
+#        run: echo "Branch name is $BRANCH_NAME"
