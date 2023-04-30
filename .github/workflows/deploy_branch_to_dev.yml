@@ -1,4 +1,4 @@
-name: deploy_to_railway_dev_env
+name: deploy_branch_to_dev
 
 on:
   workflow_dispatch
