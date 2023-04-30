@@ -48,6 +48,6 @@ jobs:
       - name: fetch changes
         run: git fetch
       - name: merge changes from dev
-        run: git merge dev
+        run: git merge origin/dev
       - name: deploy current branch
         run: railway up
